@@ -1,0 +1,19 @@
+#  Default rules for rsyslog.
+#
+#                       For more information see rsyslog.conf(5) and /etc/rsyslog.conf
+
+#$FileOwner delfos
+#$FileGroup delfos
+
+# "-" sign to omit syncing the file after every logging
+local0.*                -/var/log/delfos.log
+local0.none             -/var/log/syslog
+local0.none             -/var/log/user.log
+local0.none             -/var/log/debug
+local0.none             -/var/log/messages
+
+# Leave a copy in syslog
+#local0.*                -/var/log/syslog
+
+# No log in any file anymore
+local0.*                ~

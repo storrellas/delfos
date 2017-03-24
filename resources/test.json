@@ -1,0 +1,56 @@
+{
+    "delfos" : {
+        "title" : "delfos syslog format",
+        "description" : "Log format used by delfos",
+        "url" : "http://delfos.com",
+        "regex" : {
+            "custom1" : {
+                "pattern" : "^(?<timestamp>\\w{3}\\s{1,2}\\d{1,2} \\d{2}:\\d{2}:\\d{2}) (?<log_hostname>\\w+) (?<log_procname>\\w{2,4})(\\[(?<instance>(\\w+)?)\\])?: #033\\[0;\\d{2}m\\[(?<level>\\w+)\\]#033\\[0m\\[(?<log_pid>\\d+)\\]  --\\>  (\\[(?<my_event>\\w+)\\])?(?<body>.*)$"
+            }
+        },
+        "level-field" : "level",
+        "level" : {
+						"trace"   : "trace",
+						"debug"   : "debug",
+						"info"    : "notice|information",
+            "warning" : "warning",
+            "error"   : "error",
+            "fatal"   : "critical|fatal|alert|emergency"
+        },
+				"value" : {
+						"log_procname" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"level" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"log_pid" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"my_event" : {
+								"kind" : "string",
+								"identifier" : true
+						}
+				},
+        "sample" : [
+						{
+								"line" : "Nov 16 10:17:43 pc10161l DAI[testing]: #033[0;32m[information]#033[0m[5566]  -->  Config file => Server IP:Port          [localhost:9907]"
+						},
+						{
+								"line" : "Nov 16 10:14:06 pc10161l ACM[]: #033[0;33m[warning]#033[0m[1127]  -->  [ACM:set_documentation_path] path not found"
+						},
+						{
+								"line" : "Nov 15 15:04:11 pc10161l LM: #033[0;36m[notice]#033[0m[17734]  -->  [NodeStructure][leads][get_content_copy][8][dc423f00-89f5-4ee4-9286-9a4af17e28d7][node not found]"
+						},
+						{
+								"line" : "Nov 15 15:04:12 pc10161l DAI[1]: #033[0;37m[debug]#033[0m[17754]  -->  WDatabase:ExecuteSQL -> Setting connection attribute READ/WRITE OK"
+						},
+						{
+								"line" : "Nov 15 15:04:12 pc10161l DAI[1]: #033[0;36m[notice]#033[0m[17758]  -->  [listener::receive][buffer=''][socket closed by peer']"
+						}
+				]
+    }
+}

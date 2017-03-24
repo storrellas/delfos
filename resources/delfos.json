@@ -1,0 +1,64 @@
+{
+    "enzo" : {
+        "title" : "Enzo syslog format",
+        "description" : "Log format used by Enzo",
+        "url" : "http://delfos.com",
+        "regex" : {
+            "custom1" : {
+                "pattern" : "^(?<timestamp>\\w{3}\\s{1,2}\\d{1,2} \\d{2}:\\d{2}:\\d{2}) (?<log_hostname>\\w+) Enzo: (?<my_log_line>[0-9a-f]{8}) (?<log_procname>\\w+)[ ]* (?<my_instance>\\d{2}) (?<level>\\w+) (?<my_timestamp_2>\\d{4}.\\d{2}.\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}) (?<log_pid>\\d+)[ ]* (?<my_filename>\\w+\\.(cpp|h)):(?<my_code_line>\\d+)\\[(?<my_function>[\\w<>\\(\\){}:&\\*,\\s]+)\\] (?<my_event>\\w+) (?<body>.*)$"
+            }
+        },
+        "level-field" : "level",
+        "level" : {
+						"trace"   : "Trac",
+						"debug"   : "Debu",
+						"info"    : "Info",
+            "warning" : "Warn",
+            "error"   : "Erro",
+            "fatal"   : "Fata"
+        },
+				"value" : {
+						"my_log_line" : {
+								"kind" : "string",
+								"identifier" : false
+						},
+						"log_procname" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"level" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"log_pid" : {
+								"kind" : "string",
+								"identifier" : true
+						},
+						"my_code_line" : {
+								"kind" : "integer",
+								"identifier" : true
+						},
+						"my_event" : {
+								"kind" : "string",
+								"identifier" : true
+						}
+				},
+        "sample" : [
+						{
+								"line" : "Nov 11 13:55:31 pc10161l Enzo: 00000022 Enzo 42 Debu 2016.11.11 13:55:31.870 28205 Connection.cpp:147[WHttp Connection::do_receive_http()] undefined response_str: HTTP/1.1 200  OK#015#012Access-Control-Allow-Headers:"
+						},
+						{
+								"line" : "Nov 11 13:38:22 pc10161l Enzo: 00000023 Enzo 42 Debu 2016.11.11 13:38:22.171 21519 Connection.cpp:90[WHttp Connection::do_receive_http()] undefined Response returned with status code 200"
+						},
+						{
+								"line" : "Nov  8 14:10:21 pc10161l Enzo: 00000011 GARI 33 Info 2016.11.08 14:10:21.322 25262 Logger.cpp:360[void <anonymous namespace>::worker(boost::barrier &, const size_t)] requestlead 0: 3"
+						},
+						{
+								"line" : "Nov 10 09:50:26 pc10161l Enzo: 00000006 RTV  22 Warn 2016.11.10 09:50:26.507 6878 Logger.cpp:391[void <anonymous namespace>::run_simple_tests()] requestlead A warning severity message"
+						},
+						{
+								"line" : "Nov  8 14:09:14 pc10161l Enzo: 0000000b RTV  07 Info 2016.11.08 14:09:14.907 25182 Logger.cpp:360[void <anonymous namespace>::worker(boost::barrier &, const size_t)] requestlead 1: 1"
+						}
+				]
+    }
+}
